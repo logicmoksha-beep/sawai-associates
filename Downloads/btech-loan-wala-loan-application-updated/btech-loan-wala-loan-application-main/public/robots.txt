@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Block nothing important; allow full crawling.
+
+Sitemap: https://btechloanwala.com/sitemap.xml
