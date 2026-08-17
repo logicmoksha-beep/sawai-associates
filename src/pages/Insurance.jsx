@@ -1,6 +1,136 @@
-import { ShieldCheck, HeartPulse, Car, BriefcaseBusiness } from "lucide-react";
-export default function Insurance(){
- const items=[["Life Insurance",ShieldCheck,"Financial protection for you and your family."],["Health Insurance",HeartPulse,"Support for healthcare and medical needs."],["Motor Insurance",Car,"Protection solutions for vehicles and drivers."],["Business Insurance",BriefcaseBusiness,"Cover designed around business risks and needs."]];
- return <><PageHero title="Insurance" text="Protection solutions designed around you, your family and your business."/><section className="section"><div className="container"><div className="service-grid">{items.map(([t,I,d])=><div className="service-card" key={t}><div className="icon"><I/></div><h3>{t}</h3><p>{d}</p><a href="/contact">Enquire <span>→</span></a></div>)}</div></div></section><section className="cta"><div className="container cta-inner"><h2>Need help choosing an insurance solution?</h2><a className="btn white" href="/contact">Get Enquiry</a></div></section></>
+import { Link } from "react-router-dom";
+import {
+  ShieldCheck,
+  HeartPulse,
+  Car,
+  BriefcaseBusiness,
+} from "lucide-react";
+
+export default function Insurance() {
+  const services = [
+    {
+      icon: <ShieldCheck size={35} />,
+      title: "Life Insurance",
+      description:
+        "Secure your family's future with reliable life insurance plans designed for long-term financial protection.",
+      link: "/insurance/life-insurance",
+    },
+    {
+      icon: <HeartPulse size={35} />,
+      title: "Health Insurance",
+      description:
+        "Comprehensive health coverage to support medical expenses and ensure peace of mind.",
+      link: "/insurance/health-insurance",
+    },
+    {
+      icon: <Car size={35} />,
+      title: "Motor Insurance",
+      description:
+        "Protect your vehicle against accidents, damages and unforeseen risks with the right coverage.",
+      link: "/insurance/motor-insurance",
+    },
+    {
+      icon: <BriefcaseBusiness size={35} />,
+      title: "Business Insurance",
+      description:
+        "Tailored insurance solutions to safeguard your business operations, assets and growth.",
+      link: "/insurance/business-insurance",
+    },
+  ];
+
+  return (
+    <>
+      <section className="page-hero">
+        <div className="container">
+          <span className="eyebrow">Insurance Services</span>
+
+          <h1>Protect What Matters Most</h1>
+
+          <p>
+            Comprehensive insurance solutions designed for individuals,
+            families and businesses to secure their future with confidence.
+          </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-head">
+            <span className="eyebrow">Our Services</span>
+
+            <h2>Insurance Solutions for Every Need</h2>
+
+            <p>
+              From personal protection to business security, we help
+              you choose the right coverage with expert guidance.
+            </p>
+          </div>
+
+         <div className="service-grid insurance-grid">
+            {services.map((service) => (
+              <div className="service-card" key={service.title}>
+                <div className="icon">{service.icon}</div>
+
+                <h3>{service.title}</h3>
+
+                <p>{service.description}</p>
+
+                <Link to={service.link}>
+                  Learn More →
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section light-section">
+        <div className="container split">
+          <div>
+            <span className="eyebrow">Why Insurance?</span>
+
+            <h2>Security for Every Stage of Life</h2>
+
+            <p>
+              Insurance is more than protection—it's confidence for the
+              future. Whether it's your health, family, vehicle or business,
+              the right policy can provide financial stability when you need
+              it most.
+            </p>
+
+            <p>
+              Our advisors help you understand options and select plans
+              that fit your specific requirements.
+            </p>
+          </div>
+
+          <div className="feature-box">
+            <div>
+              <h3>Benefits of Choosing Us</h3>
+
+              <p>
+                Expert Advice • Trusted Insurance Partners • Customized
+                Plans • Quick Support • Transparent Process • Long-Term
+                Assistance
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="cta">
+        <div className="container cta-inner">
+          <div>
+            <span className="eyebrow">Let's Connect</span>
+
+            <h2>Need Help Choosing the Right Insurance?</h2>
+          </div>
+
+          <Link className="btn white" to="/contact">
+            Get Enquiry
+          </Link>
+        </div>
+      </section>
+    </>
+  );
 }
-function PageHero({title,text}){return <section className="page-hero"><div className="container"><span className="eyebrow">Sawai Associates</span><h1>{title}</h1><p>{text}</p></div></section>}
