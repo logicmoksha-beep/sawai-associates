@@ -1,0 +1,5 @@
+import { Link } from "react-router-dom";
+export default function RealEstate(){
+ const cards=[["Buy Property","Find opportunities that match your location, budget and requirements."],["Sell Property","Get guidance to present and market your property effectively."],["Rent Property","Explore residential and commercial rental requirements."],["Commercial Property","Discover commercial spaces and investment opportunities."]];
+ return <><section className="page-hero real"><div className="container"><span className="eyebrow">Real Estate</span><h1>Find the right property.<br/>Build the right future.</h1><p>Property guidance for buying, selling, renting and commercial requirements.</p></div></section><section className="section"><div className="container"><div className="section-head"><span className="eyebrow">Our Services</span><h2>Real Estate solutions</h2></div><div className="service-grid">{cards.map(([t,d])=><div className="service-card" key={t}><h3>{t}</h3><p>{d}</p><Link to="/contact">Enquire →</Link></div>)}</div></div></section></>
+}

@@ -1,0 +1,6 @@
+import { Globe, Smartphone, Layers3, Headset } from "lucide-react";
+export default function ITServices(){
+ const items=[["Web Development",Globe,"Modern, responsive websites for businesses and brands."],["Mobile App Development",Smartphone,"Mobile experiences designed for usability and growth."],["Software Solutions",Layers3,"Custom digital solutions built around business requirements."],["IT Consultancy",Headset,"Practical technology guidance for better digital decisions."]];
+ return <><PageHero title="IT Services" text="Modern technology solutions for businesses ready to grow digitally."/><section className="section"><div className="container"><div className="service-grid">{items.map(([t,I,d])=><div className="service-card" key={t}><div className="icon"><I/></div><h3>{t}</h3><p>{d}</p><a href="/contact">Discuss a Project →</a></div>)}</div></div></section></>
+}
+function PageHero({title,text}){return <section className="page-hero it"><div className="container"><span className="eyebrow">Sawai Associates</span><h1>{title}</h1><p>{text}</p></div></section>}

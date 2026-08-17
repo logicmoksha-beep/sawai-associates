@@ -1,55 +1,42 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { ArrowRight, ShieldCheck, Building2, Code2, CheckCircle2 } from "lucide-react";
 
-const SERVICES = [
-  {
-    title: 'Insurance',
-    desc: 'Health, life, motor, travel and home cover tailored to your needs.',
-    path: '/insurance/health',
-    cta: 'Insurance plans',
-  },
-  {
-    title: 'Real Estate',
-    desc: 'Buy, sell or rent residential and commercial properties with confidence.',
-    path: '/real-estate/buy',
-    cta: 'Browse properties',
-  },
-  {
-    title: 'IT Services',
-    desc: 'Web, mobile, software and consultancy solutions for modern business.',
-    path: '/it-services/web-development',
-    cta: 'Explore tech services',
-  },
-]
+export default function Home(){
+ return <div>
+  <section className="hero">
+    <div className="hero-overlay"/>
+    <div className="container hero-content">
+      <span className="eyebrow">Sawai Associates</span>
+      <h1>One Trusted Partner for<br/><span>Real Estate, Insurance & IT</span></h1>
+      <p>Helping you make confident property decisions, protect what matters and build with modern technology.</p>
+      <div className="hero-actions"><Link className="btn primary" to="/real-estate">Explore Services <ArrowRight size={18}/></Link><Link className="btn glass" to="/contact">Get Enquiry</Link></div>
+    </div>
+  </section>
 
-export default function Home() {
-  return (
-    <section className="page">
-      <div className="page__hero page__hero--home">
-        <h1 className="page__title">Welcome to Sawai Associates</h1>
-        <p className="page__subtitle">
-          Insurance · Real Estate · IT Services — three businesses, one portal.
-        </p>
-        <div className="page__hero-actions">
-          <Link className="btn btn--primary" to="/enquiry">
-            Get Enquiry
-          </Link>
-          <Link className="btn btn--ghost" to="/about">
-            About Us
-          </Link>
-        </div>
+  <section className="section">
+    <div className="container">
+      <div className="section-head"><span className="eyebrow">What We Do</span><h2>Solutions designed around your needs</h2><p>Three focused services under one trusted brand.</p></div>
+      <div className="service-grid">
+        <Service icon={<Building2/>} title="Real Estate" text="Property buying, selling, renting and commercial opportunities." link="/real-estate"/>
+        <Service icon={<ShieldCheck/>} title="Insurance" text="Life, health, motor and business protection solutions." link="/insurance"/>
+        <Service icon={<Code2/>} title="IT Services" text="Web, mobile, software and technology consulting solutions." link="/it-services"/>
       </div>
+    </div>
+  </section>
 
-      <div className="cards">
-        {SERVICES.map((s) => (
-          <div className="card" key={s.title}>
-            <h2 className="card__title">{s.title}</h2>
-            <p className="card__desc">{s.desc}</p>
-            <Link className="card__link" to={s.path}>
-              {s.cta} →
-            </Link>
-          </div>
-        ))}
-      </div>
-    </section>
-  )
+  <section className="section light-section">
+   <div className="container split">
+    <div><span className="eyebrow">About Us</span><h2>Built on trust. Driven by solutions.</h2><p>Sawai Associates brings Real Estate, Insurance and IT Services together to make professional solutions simpler and more accessible for clients.</p><Link className="text-link" to="/about">Discover our story <ArrowRight size={16}/></Link></div>
+    <div className="feature-box"><CheckCircle2/><div><h3>One relationship. Multiple solutions.</h3><p>From finding the right property to protecting your future and building digital solutions, our services are designed to work around your goals.</p></div></div>
+   </div>
+  </section>
+
+  <section className="section">
+   <div className="container"><div className="section-head"><span className="eyebrow">Why Choose Us</span><h2>A dependable partner for every step</h2></div>
+   <div className="why-grid">{["Trusted Guidance","Professional Service","Client-Focused Approach","End-to-End Support"].map(x=><div className="why-card" key={x}><CheckCircle2/><h3>{x}</h3><p>Clear communication and practical support focused on your requirements.</p></div>)}</div></div>
+  </section>
+
+  <section className="cta"><div className="container cta-inner"><div><span className="eyebrow">Let's Connect</span><h2>Have a requirement? Let's discuss it.</h2></div><Link className="btn white" to="/contact">Get Enquiry <ArrowRight size={18}/></Link></div></section>
+ </div>
 }
+function Service({icon,title,text,link}){return <div className="service-card"><div className="icon">{icon}</div><h3>{title}</h3><p>{text}</p><Link to={link}>View Service <ArrowRight size={16}/></Link></div>}

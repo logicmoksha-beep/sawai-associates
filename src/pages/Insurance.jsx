@@ -1,0 +1,6 @@
+import { ShieldCheck, HeartPulse, Car, BriefcaseBusiness } from "lucide-react";
+export default function Insurance(){
+ const items=[["Life Insurance",ShieldCheck,"Financial protection for you and your family."],["Health Insurance",HeartPulse,"Support for healthcare and medical needs."],["Motor Insurance",Car,"Protection solutions for vehicles and drivers."],["Business Insurance",BriefcaseBusiness,"Cover designed around business risks and needs."]];
+ return <><PageHero title="Insurance" text="Protection solutions designed around you, your family and your business."/><section className="section"><div className="container"><div className="service-grid">{items.map(([t,I,d])=><div className="service-card" key={t}><div className="icon"><I/></div><h3>{t}</h3><p>{d}</p><a href="/contact">Enquire <span>→</span></a></div>)}</div></div></section><section className="cta"><div className="container cta-inner"><h2>Need help choosing an insurance solution?</h2><a className="btn white" href="/contact">Get Enquiry</a></div></section></>
+}
+function PageHero({title,text}){return <section className="page-hero"><div className="container"><span className="eyebrow">Sawai Associates</span><h1>{title}</h1><p>{text}</p></div></section>}
