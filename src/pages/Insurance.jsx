@@ -1,55 +1,41 @@
 import { Link } from "react-router-dom";
-import {
-  ShieldCheck,
-  HeartPulse,
-  Car,
-  BriefcaseBusiness,
-} from "lucide-react";
+import { Building, BriefcaseBusiness, HeartPulse, ShieldCheck } from "lucide-react";
 
 export default function Insurance() {
   const services = [
     {
-      icon: <ShieldCheck size={35} />,
-      title: "Life Insurance",
-      description:
-        "Secure your family's future with reliable life insurance plans designed for long-term financial protection.",
-      link: "/insurance/life-insurance",
-    },
-    {
-      icon: <HeartPulse size={35} />,
-      title: "Health Insurance",
-      description:
-        "Comprehensive health coverage to support medical expenses and ensure peace of mind.",
-      link: "/insurance/health-insurance",
-    },
-    {
-      icon: <Car size={35} />,
-      title: "Motor Insurance",
-      description:
-        "Protect your vehicle against accidents, damages and unforeseen risks with the right coverage.",
-      link: "/insurance/motor-insurance",
+      icon: <Building size={35} />,
+      title: "Property Insurance",
+      description: "Protection for eligible buildings, property contents and assets against covered risks, with optional add-ons depending on the selected policy.",
+      link: "/contact",
     },
     {
       icon: <BriefcaseBusiness size={35} />,
       title: "Business Insurance",
-      description:
-        "Tailored insurance solutions to safeguard your business operations, assets and growth.",
-      link: "/insurance/business-insurance",
+      description: "Insurance support for businesses, shops, offices and commercial establishments, including eligible assets and business-related risks.",
+      link: "/contact",
+    },
+    {
+      icon: <HeartPulse size={35} />,
+      title: "Health Insurance",
+      description: "Coverage options for individuals and families, including eligible hospitalisation, related expenses, network treatment and available add-ons.",
+      link: "/insurance/health-insurance",
+    },
+    {
+      icon: <ShieldCheck size={35} />,
+      title: "Life Insurance",
+      description: "Financial protection for the policyholder's family, with life cover and other benefits depending on the selected policy and eligibility.",
+      link: "/insurance/life-insurance",
     },
   ];
 
   return (
-    <>
-      <section className="page-hero">
+    <div className="insurance-page">
+      <section className="page-hero insurance-hero">
         <div className="container">
           <span className="eyebrow">Insurance Services</span>
-
           <h1>Protect What Matters Most</h1>
-
-          <p>
-            Comprehensive insurance solutions designed for individuals,
-            families and businesses to secure their future with confidence.
-          </p>
+          <p>Insurance solutions for property, businesses, health and life—supported with clear guidance to help you understand your options.</p>
         </div>
       </section>
 
@@ -57,27 +43,17 @@ export default function Insurance() {
         <div className="container">
           <div className="section-head">
             <span className="eyebrow">Our Services</span>
-
             <h2>Insurance Solutions for Every Need</h2>
-
-            <p>
-              From personal protection to business security, we help
-              you choose the right coverage with expert guidance.
-            </p>
+            <p>Choose the protection that fits your personal, family, property or business requirements.</p>
           </div>
-
-         <div className="service-grid insurance-grid">
+          <div className="service-grid insurance-grid">
             {services.map((service) => (
-              <div className="service-card" key={service.title}>
+              <div className="service-card insurance-card" key={service.title}>
+                <div className="insurance-card-image" aria-hidden="true"></div>
                 <div className="icon">{service.icon}</div>
-
                 <h3>{service.title}</h3>
-
                 <p>{service.description}</p>
-
-                <Link to={service.link}>
-                  Learn More →
-                </Link>
+                <Link to={service.link}>Learn More →</Link>
               </div>
             ))}
           </div>
@@ -88,31 +64,14 @@ export default function Insurance() {
         <div className="container split">
           <div>
             <span className="eyebrow">Why Insurance?</span>
-
             <h2>Security for Every Stage of Life</h2>
-
-            <p>
-              Insurance is more than protection—it's confidence for the
-              future. Whether it's your health, family, vehicle or business,
-              the right policy can provide financial stability when you need
-              it most.
-            </p>
-
-            <p>
-              Our advisors help you understand options and select plans
-              that fit your specific requirements.
-            </p>
+            <p>Insurance is more than protection—it is confidence for the future. The right policy can provide valuable financial support when unexpected situations arise.</p>
+            <p>Our team helps you understand available options and take the next step based on your specific requirements.</p>
           </div>
-
-          <div className="feature-box">
+          <div className="feature-box insurance-feature-box">
             <div>
               <h3>Benefits of Choosing Us</h3>
-
-              <p>
-                Expert Advice • Trusted Insurance Partners • Customized
-                Plans • Quick Support • Transparent Process • Long-Term
-                Assistance
-              </p>
+              <p>Professional Guidance • Clear Information • Customized Requirements • Responsive Support • Transparent Process • Long-Term Assistance</p>
             </div>
           </div>
         </div>
@@ -122,15 +81,11 @@ export default function Insurance() {
         <div className="container cta-inner">
           <div>
             <span className="eyebrow">Let's Connect</span>
-
             <h2>Need Help Choosing the Right Insurance?</h2>
           </div>
-
-          <Link className="btn white" to="/contact">
-            Get Enquiry
-          </Link>
+          <Link className="btn white" to="/contact">Get Enquiry</Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }

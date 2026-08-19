@@ -39,8 +39,8 @@ export default function ITServices() {
   ];
 
   return (
-    <>
-      <section className="page-hero it">
+    <div className="it-page">
+      <section className="page-hero it it-services-hero">
         <div className="container">
           <span className="eyebrow">IT Services</span>
 
@@ -135,6 +135,6 @@ export default function ITServices() {
           </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }

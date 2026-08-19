@@ -1,41 +1,63 @@
 import { Link } from "react-router-dom";
-import { Building2, Home, KeyRound, Landmark } from "lucide-react";
+import { Building2, Home, Map, Landmark } from "lucide-react";
 
 export default function RealEstate() {
   const services = [
     {
+      id: "residential",
       icon: <Home size={35} />,
-      title: "Buy Property",
-      description:
-        "Discover residential and investment properties that match your budget, location and future goals.",
-      link: "/real-estate/buy-property",
+      title: "Residential Property",
+
+      description: `• Flats & Apartments
+• 1 BHK, 2 BHK & 3 BHK
+• Independent Houses
+• Row Houses
+• New & Resale Properties
+• Ready-to-Move & Under-Construction Properties`,
+      link: "/contact",
     },
     {
+      id: "commercial",
       icon: <Building2 size={35} />,
-      title: "Sell Property",
-      description:
-        "Get expert guidance, property valuation and marketing support to maximize your property's value.",
-      link: "/real-estate/sell-property",
-    },
-    {
-      icon: <KeyRound size={35} />,
-      title: "Rent Property",
-      description:
-        "Find quality residential and commercial rental options with complete assistance.",
-      link: "/real-estate/rent-property",
-    },
-    {
-      icon: <Landmark size={35} />,
       title: "Commercial Property",
       description:
-        "Explore office spaces, retail outlets and commercial investment opportunities.",
-      link: "/real-estate/commercial-property",
+        `• Offices 
+    • Shops 
+    • Showrooms
+    • Warehouses
+      • Industrial Properties 
+      • New & Resale Commercial Properties`,
+      link: "/contact",
+    },
+    {
+      id: "plots",
+      icon: <Map size={35} />,
+      title: "Plots",
+      description: `• Residential Plots
+• Commercial Plots
+• NA Plots
+• Gated Community Plots
+• Investment Plots
+• New & Resale Plots`,
+      link: "/contact",
+    },
+    {
+      id: "villas",
+      icon: <Landmark size={35} />,
+      title: "Villas",
+      description: 
+      `• Luxury Villas
+• Independent Villas
+• New & Resale Villas
+• Ready-to-Move Villas
+• Under-Construction Villas`,
+      link: "/contact",
     },
   ];
 
   return (
-    <>
-      <section className="page-hero real">
+    <div className="realestate-page">
+      <section className="page-hero real realestate-hero">
         <div className="container">
           <span className="eyebrow">Real Estate Services</span>
 
@@ -46,8 +68,8 @@ export default function RealEstate() {
           </h1>
 
           <p>
-            Whether you're buying, selling, renting or investing,
-            Sawai Associates provides trusted guidance and complete
+            Whether you are looking for a home, commercial space, plot or
+            villa, Sawai Associates provides trusted guidance and complete
             real estate solutions.
           </p>
         </div>
@@ -57,26 +79,33 @@ export default function RealEstate() {
         <div className="container">
           <div className="section-head">
             <span className="eyebrow">Our Expertise</span>
+
             <h2>Comprehensive Property Solutions</h2>
 
             <p>
-              From dream homes to commercial investments,
-              we help clients make confident property decisions.
+              Explore the right property category for your residential,
+              commercial and investment requirements.
             </p>
           </div>
 
-          <div className="service-grid">
+          <div className="service-grid real-estate-grid">
             {services.map((service) => (
-              <div className="service-card" key={service.title}>
+              <div
+                id={service.id}
+                className="service-card real-estate-card"
+                key={service.title}
+              >
+                <div className="real-card-image" aria-hidden="true"></div>
+
                 <div className="icon">{service.icon}</div>
 
                 <h3>{service.title}</h3>
 
-                <p>{service.description}</p>
+                <p style={{ whiteSpace: "pre-line" }}>
+                  {service.description}
+                </p>
 
-                <Link to={service.link}>
-                  Learn More →
-                </Link>
+                <Link to={service.link}>Enquire Now →</Link>
               </div>
             ))}
           </div>
@@ -91,25 +120,27 @@ export default function RealEstate() {
             <h2>Trusted Real Estate Guidance</h2>
 
             <p>
-              We understand that property decisions are important life
-              and business investments. Our team focuses on transparency,
-              market knowledge and personalized support to help you
-              achieve the best outcomes.
+              We understand that property decisions are important life and
+              business investments. Our team focuses on transparency, market
+              knowledge and personalized support to help you achieve the best
+              outcomes.
             </p>
 
             <p>
-              From site visits to documentation assistance, we guide
-              you through every step of the process.
+              From property selection and site visits to practical guidance
+              and documentation support, we help make the process clearer and
+              more confident.
             </p>
           </div>
 
-          <div className="feature-box">
+          <div className="feature-box real-feature-box">
             <div>
               <h3>End-to-End Property Assistance</h3>
 
               <p>
-                Property Search • Site Visits • Investment Guidance •
-                Documentation Support • Market Insights • Customer Support
+                Property Search • Residential Property • Commercial Property •
+                Plots • Villas • Site Visits • Investment Guidance •
+                Documentation Support • Market Insights
               </p>
             </div>
           </div>
@@ -129,6 +160,6 @@ export default function RealEstate() {
           </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }

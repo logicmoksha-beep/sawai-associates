@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import WhatsAppChat from "./components/WhatsAppChat";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -14,10 +15,6 @@ import MotorInsurance from "./pages/MotorInsurance";
 import BusinessInsurance from "./pages/BusinessInsurance";
 
 import RealEstate from "./pages/RealEstate";
-import BuyProperty from "./pages/BuyProperty";
-import SellProperty from "./pages/SellProperty";
-import RentProperty from "./pages/RentProperty";
-import CommercialProperty from "./pages/CommercialProperty";
 
 import ITServices from "./pages/ITServices";
 import WebDevelopment from "./pages/WebDevelopment";
@@ -58,22 +55,6 @@ export default function App() {
 
           {/* Real Estate */}
           <Route path="/real-estate" element={<RealEstate />} />
-          <Route
-            path="/real-estate/buy-property"
-            element={<BuyProperty />}
-          />
-          <Route
-            path="/real-estate/sell-property"
-            element={<SellProperty />}
-          />
-          <Route
-            path="/real-estate/rent-property"
-            element={<RentProperty />}
-          />
-          <Route
-            path="/real-estate/commercial-property"
-            element={<CommercialProperty />}
-          />
 
           {/* IT Services */}
           <Route path="/it-services" element={<ITServices />} />
@@ -97,6 +78,7 @@ export default function App() {
       </main>
 
       <Footer />
+      <WhatsAppChat />
     </>
   );
 }

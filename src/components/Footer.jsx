@@ -6,6 +6,8 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
+import { CONTACT } from "../data/contact";
+import logo from "../assets/logo/sawai-logo.png";
 
 export default function Footer() {
   return (
@@ -14,14 +16,12 @@ export default function Footer() {
 
         {/* Company Info */}
         <div>
-          <h3>Sawai Associates</h3>
+          <div className="footer-brand"><img src={logo} alt="Sawai Associates company logo" /><h3>{CONTACT.brand}</h3></div>
+
+          <p>{CONTACT.tagline}</p>
 
           <p>
-            Real Estate • Insurance • IT Services
-          </p>
-
-          <p>
-            Sawai Associates is committed to delivering trusted
+            {CONTACT.brand} is committed to delivering trusted
             property solutions, insurance services and innovative
             technology solutions under one professional platform.
           </p>
@@ -43,52 +43,65 @@ export default function Footer() {
         <div>
           <h4>Our Services</h4>
 
-          <Link to="/buy-property">Buy Property</Link>
-          <Link to="/sell-property">Sell Property</Link>
-          <Link to="/life-insurance">Life Insurance</Link>
-          <Link to="/health-insurance">Health Insurance</Link>
-          <Link to="/web-development">Web Development</Link>
-          <Link to="/it-consultancy">IT Consultancy</Link>
-        </div>
+
+<Link to="/real-estate#residential">
+  Residential Property
+</Link>
+
+<Link to="/real-estate#commercial">
+  Commercial Property
+</Link>
+
+<Link to="/real-estate#plots">
+  Plots
+</Link>
+
+<Link to="/real-estate#villas">
+  Villas
+</Link>
+
+<Link to="/insurance">
+  Insurance Services
+</Link>
+
+<Link to="/it-services">
+  IT Services
+</Link>
+       </div>
 
         {/* Contact */}
         <div>
           <h4>Contact Information</h4>
 
           <p>
-            <Phone size={15} /> +91 90000 00000
+            <Phone size={15} />{" "}
+            <a href={`tel:+91${CONTACT.phone}`}>{CONTACT.phoneDisplay}</a>
           </p>
 
           <p>
-            <Mail size={15} /> info@sawaiassociates.com
+            <Mail size={15} />{" "}
+            <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
           </p>
-
+              
           <p>
-            <MapPin size={15} /> Pune, Maharashtra, India
+            <MapPin size={15} /> {CONTACT.address}
           </p>
 
           <div className="social">
-            <a
-              href="https://www.linkedin.com/company/btechloanwala/"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href={CONTACT.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
               <Linkedin />
             </a>
 
-            <a
-              href="https://www.instagram.com/btechloanwala"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href={CONTACT.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">
               <Instagram />
             </a>
+            
           </div>
         </div>
       </div>
 
       <div className="copyright">
-        © 2026 Sawai Associates. All Rights Reserved.
+        © 2026 {CONTACT.brand}. All Rights Reserved.
       </div>
     </footer>
   );
