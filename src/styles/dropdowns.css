@@ -1,0 +1,338 @@
+﻿/* =========================
+   REAL ESTATE NESTED DROPDOWN
+   ========================= */
+
+.submenu-item{
+    width:100%;
+}
+
+.submenu-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    min-height:42px;
+}
+
+.submenu-row a{
+    flex:1;
+    text-decoration:none;
+    color:#222;
+}
+
+.submenu-arrow{
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:transparent;
+    border:none;
+
+    cursor:pointer;
+    font-size:20px;
+    flex-shrink:0;
+}
+
+/* Desktop */
+.submenu{
+    position:absolute;
+    left:100%;
+    top:0;
+
+    min-width:250px;
+
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+    padding:6px 0;
+    z-index:9999;
+}
+
+.submenu a{
+    display:block;
+    padding:10px 15px;
+    text-decoration:none;
+    color:#222;
+}
+
+.submenu a:hover{
+    background:#f5f5f5;
+}
+
+/* =========================
+   MOBILE NAVBAR
+   ========================= */
+
+@media(max-width:850px){
+
+    .nav-inner{
+        height:74px;
+    }
+
+    .nav-menu{
+        position:absolute;
+        top:74px;
+        left:0;
+        right:0;
+
+        background:#fff;
+
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+
+        padding:12px 5%;
+        gap:0;
+
+        border-bottom:1px solid var(--line);
+        box-shadow:var(--shadow);
+
+        z-index:999;
+    }
+
+    .nav-menu.show{
+        display:flex;
+    }
+
+    .nav-drop{
+        width:100%;
+    }
+
+    .nav-link-group{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        width:100%;
+    }
+
+    .nav-menu > a,
+    .nav-link-group > a{
+        padding:14px 0;
+        text-align:left;
+    }
+
+    .dropdown{
+        position:static;
+        display:none;
+
+        opacity:1;
+        visibility:visible;
+
+        box-shadow:none;
+        border:0;
+
+        min-width:0;
+
+        padding:0 0 5px 12px;
+    }
+
+    .dropdown.active{
+        display:block;
+    }
+
+    /* Mobile Submenu */
+
+    .submenu{
+        position:static !important;
+
+        width:100%;
+        min-width:100%;
+
+        margin-top:4px;
+        padding:4px 0;
+
+        background:#f8f8f8;
+
+        border-left:3px solid #ddd;
+        border-radius:0;
+
+        box-shadow:none;
+    }
+
+    .submenu a{
+        display:block;
+        padding:10px 15px 10px 30px;
+        font-size:14px;
+    }
+
+    .submenu-arrow{
+        width:42px;
+        height:42px;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        background:none;
+        border:none;
+
+        cursor:pointer;
+    }
+
+    .enquiry-btn{
+        display:none;
+    }
+}
+
+/* =========================
+   NAVBAR SPACING FIX
+   ========================= */
+
+.nav-inner{
+    gap:8px;
+}
+
+.nav-menu{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex:1;
+    margin-left:8px;
+}
+
+.nav-menu > a,
+.nav-link-group > a{
+    padding:4px 6px;
+    font-size:14px;
+    font-weight:500;
+    white-space:nowrap;
+}
+
+.nav-link-group{
+    display:flex;
+    align-items:center;
+    gap:0;
+}
+
+.dropdown-toggle{
+    padding:0;
+}
+
+@media (max-width:850px){
+
+    .nav-menu{
+        align-items:flex-start !important;
+    }
+
+    .nav-menu > a{
+        width:100% !important;
+        display:block !important;
+        text-align:left !important;
+        margin:0 !important;
+        padding:12px 0 !important;
+    }
+
+    .nav-drop{
+        width:100% !important;
+    }
+
+    .nav-link-group{
+        width:100% !important;
+        justify-content:space-between !important;
+    }
+}
+/* ===== DESKTOP REAL ESTATE DROPDOWN SPACE FIX ===== */
+
+@media (min-width: 851px) {
+
+    .dropdown .submenu-item {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .dropdown .submenu-row {
+        min-height: 32px !important;
+        height: 32px !important;
+
+        padding: 2px 13px !important;
+        margin: 0 !important;
+    }
+
+    .dropdown .submenu-row a {
+        padding: 4px 0 !important;
+        margin: 0 !important;
+
+        font-size: 14px !important;
+        line-height: 1.2 !important;
+    }
+
+    .dropdown .submenu-arrow {
+        width: 32px !important;
+        height: 32px !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+
+/* ===== MOBILE DROPDOWN QUICK SMOOTH FIX ===== */
+
+@media (max-width:850px){
+
+    .dropdown.active{
+        animation: mobileDrop .22s ease-out;
+        transform-origin: top;
+    }
+
+    .submenu{
+        animation: mobileSubDrop .22s ease-out;
+        transform-origin: top;
+    }
+
+    .submenu-arrow,
+    .dropdown-toggle{
+        transition: transform .2s ease;
+        touch-action: manipulation;
+    }
+
+    @keyframes mobileDrop{
+        from{
+            opacity:0;
+            transform:translateY(-6px);
+        }
+        to{
+            opacity:1;
+            transform:translateY(0);
+        }
+    }
+
+    @keyframes mobileSubDrop{
+        from{
+            opacity:0;
+            transform:translateY(-5px);
+        }
+        to{
+            opacity:1;
+            transform:translateY(0);
+        }
+    }
+}
+
+@media (max-width: 850px) {
+
+    .submenu-item > .submenu {
+        position: static !important;
+        display: block !important;
+
+        width: 100% !important;
+        min-width: 100% !important;
+
+        padding: 5px 0 !important;
+        margin: 4px 0 !important;
+
+        background: #f8f8f8 !important;
+        border-left: 3px solid #ddd !important;
+
+        box-shadow: none !important;
+    }
+
+    .submenu-arrow {
+        pointer-events: auto !important;
+        z-index: 999999 !important;
+        touch-action: manipulation !important;
+    }
+}

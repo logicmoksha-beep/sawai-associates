@@ -1,0 +1,629 @@
+﻿/* Premium home + header refresh */
+:root{--navy:#071d3d;--navy2:#0b2c59;--gold:#d9a441;--cream:#faf8f4}
+.topbar{background:var(--navy);color:#dbe7f6;font-size:12px;letter-spacing:.03em}
+.topbar-inner{height:34px;justify-content:space-between}
+.navbar{background:rgba(255,255,255,.96);backdrop-filter:blur(14px);box-shadow:0 8px 28px rgba(7,29,61,.07)}
+.nav-inner{height:76px}.brand img{width:54px;height:54px}.brand b{color:var(--navy);font-size:18px}
+.enquiry-btn{background:var(--navy);border-radius:9px;padding:12px 18px;box-shadow:0 8px 18px rgba(7,29,61,.16)}
+.hero{min-height:690px;background:url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=90") center/cover;overflow:hidden}
+.hero-overlay{background:linear-gradient(90deg,rgba(4,17,38,.93) 0%,rgba(5,24,51,.84) 45%,rgba(5,24,51,.22) 100%)}
+.hero-glow{position:absolute;border-radius:50%;filter:blur(30px);opacity:.3}.hero-glow-one{width:420px;height:420px;background:#1d62a6;right:18%;top:6%}.hero-glow-two{width:260px;height:260px;background:#d9a441;left:38%;bottom:-20%}
+.hero-content{min-height:690px;display:grid;grid-template-columns:1.35fr .65fr;align-items:center;gap:55px;padding:70px 0;position:relative}
+.hero-copy{max-width:760px}.hero-badge{display:inline-flex;gap:8px;align-items:center;padding:8px 13px;border:1px solid rgba(255,255,255,.25);border-radius:99px;background:rgba(255,255,255,.08);color:#eaf2ff;font-size:13px;font-weight:700}
+.hero h1{font-size:clamp(46px,6.1vw,78px);letter-spacing:-.045em;max-width:750px;margin-top:20px}.hero h1 span{color:#f1bd57}.hero p{max-width:680px;font-size:18px}.btn.primary{background:var(--gold);color:#172033;box-shadow:0 12px 28px rgba(217,164,65,.25)}.btn.primary:hover{transform:translateY(-2px)}.btn.glass{background:rgba(255,255,255,.07);backdrop-filter:blur(8px)}
+.hero-proof{display:flex;flex-wrap:wrap;gap:16px 24px;margin-top:28px;color:#dbe7f6;font-size:13px;font-weight:600}.hero-proof span{display:flex;align-items:center;gap:6px}.hero-proof svg{color:#f1bd57}
+.hero-panel{justify-self:end;width:min(340px,100%);padding:30px;border:1px solid rgba(255,255,255,.2);border-radius:20px;background:rgba(7,29,61,.62);backdrop-filter:blur(15px);box-shadow:0 25px 60px rgba(0,0,0,.22);color:#fff}
+.panel-kicker{color:#f1bd57;font-size:11px;letter-spacing:.18em;font-weight:800}.hero-panel h3{font:800 33px/1.08 Manrope;margin:15px 0 10px}.hero-panel p{font-size:14px;color:#d9e4f1}.panel-links{margin-top:20px;border-top:1px solid rgba(255,255,255,.16)}.panel-links a{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.16);display:flex;justify-content:space-between;font-weight:700;font-size:14px}
+.trust-strip{background:var(--cream);border-bottom:1px solid #ece7dd}.trust-inner{display:grid;grid-template-columns:repeat(3,1fr);padding:25px 0}.trust-inner>div{display:flex;align-items:center;gap:15px;padding:0 28px;border-right:1px solid #ddd7ca}.trust-inner>div:first-child{padding-left:0}.trust-inner>div:last-child{border:0}.trust-inner strong{font:800 29px Manrope;color:var(--gold)}.trust-inner span{font-size:13px;color:#526071;line-height:1.5}
+.services-section{padding:110px 0;background:#fff}.section-head h2{letter-spacing:-.035em}.section-head p{font-size:16px}.service-card{padding:30px;border-radius:18px;border:1px solid #e7ebf1;box-shadow:none;background:linear-gradient(180deg,#fff,#fbfcfe);position:relative}.service-card:hover{transform:translateY(-8px);box-shadow:0 22px 45px rgba(7,29,61,.11);border-color:#d7dfeb}.service-top{display:flex;justify-content:space-between;align-items:center}.service-top>span{font-size:10px;letter-spacing:.14em;color:#8993a3;font-weight:800}.service-card .icon{background:#edf2f9;color:var(--navy);width:52px;height:52px}.service-card h3{margin-top:25px}.service-card a{margin-top:10px;color:var(--navy)}
+.experience-section{background:var(--cream);padding:95px 0}.experience-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:70px;align-items:center}.experience-card h2{font:800 clamp(34px,4vw,55px)/1.08 Manrope;letter-spacing:-.04em;margin:0 0 18px}.experience-card p{color:var(--muted);line-height:1.8;max-width:540px}.approach-list{background:#fff;border:1px solid #e8e5de;border-radius:20px;padding:10px 28px;box-shadow:0 18px 45px rgba(40,43,50,.06)}.approach-item{display:grid;grid-template-columns:52px 30px 1fr;gap:16px;align-items:center;padding:22px 0;border-bottom:1px solid #edf0f3}.approach-item:last-child{border-bottom:0}.approach-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:#edf2f9;color:var(--navy)}.approach-item>span{font:800 12px Manrope;color:var(--gold)}.approach-item h3{margin:0 0 4px;font:800 18px Manrope}.approach-item p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+.why-section{background:#fff}.why-card{border:1px solid #e8edf3;border-left:1px solid #e8edf3;border-radius:16px;padding:24px;background:#fff}.why-card:hover{box-shadow:var(--shadow);transform:translateY(-4px)}.why-card svg{color:var(--gold)}.cta{background:linear-gradient(110deg,#071d3d,#0b2c59);padding:75px 0}.cta .eyebrow{color:#f1bd57}.btn.white{border-radius:9px}.footer{background:#061a36}
+@media(max-width:850px){.topbar{display:none}.hero-content{min-height:640px;grid-template-columns:1fr;padding:80px 0}.hero-panel{display:none}.trust-inner{grid-template-columns:1fr}.trust-inner>div{padding:16px 0;border-right:0;border-bottom:1px solid #ddd7ca}.trust-inner>div:last-child{border-bottom:0}.experience-grid{grid-template-columns:1fr;gap:35px}}
+@media(max-width:560px){.nav-inner{height:70px}.hero{min-height:610px}.hero-content{min-height:610px}.hero h1{font-size:46px}.hero-proof{gap:10px}.hero-actions .btn{width:100%}.trust-strip{padding:0}.approach-list{padding:8px 18px}.approach-item{grid-template-columns:46px 24px 1fr;gap:10px}.services-section{padding:75px 0}}
+
+
+/* ===== Final layout refinements ===== */
+:root { --navy:#061a36; --cream:#f7f4ee; --gold:#c69b4b; }
+.navbar { top:0; }
+.nav-inner { height:72px; gap:16px; }
+.topbar-inner { height:28px; }
+.topbar { background:var(--navy); color:#dbe7f6; font-size:12px; letter-spacing:.02em; }
+.header-socials,.nav-socials { display:flex; align-items:center; gap:8px; }
+.header-socials a { width:24px; height:24px; display:grid; place-items:center; color:#fff; border:1px solid rgba(255,255,255,.2); border-radius:7px; }
+.nav-socials a { width:34px; height:34px; display:grid; place-items:center; color:var(--blue); border:1px solid var(--line); border-radius:9px; }
+.nav-socials a:hover,.header-socials a:hover { color:var(--pink); border-color:var(--pink); }
+.brand img { width:46px; height:46px; }
+.brand b { font-size:18px; }
+.nav-menu { gap:18px; }
+.nav-menu>a,.nav-link-group>a,.nav-link-group .dropdown-toggle { font-weight:600; color:#273142; font-size:14px; }
+.nav-link-group>a:hover,.nav-link-group .dropdown-toggle:hover { color:var(--blue); }
+.nav-link-group .dropdown-toggle { padding:4px; }
+.dropdown { top:52px; }
+.enquiry-btn { padding:11px 16px; white-space:nowrap; }
+
+.founder-photo img { width:min(390px,100%); height:430px; object-fit:cover; object-position:center; border-radius:24px; display:block; border:1px solid var(--line); box-shadow:var(--shadow); background:#eef3f8; }
+.team-grid { grid-template-columns:repeat(3,minmax(0,1fr)); align-items:stretch; }
+.team-info-card { height:auto; min-height:390px; padding:0; display:flex; flex-direction:column; overflow:hidden; background:#fff; }
+.team-member-image { width:100%; height:260px; object-fit:contain; object-position:center; display:block; background:#f7f9fc; }
+.team-initials { height:115px; display:grid; place-items:center; font:800 34px Manrope; color:var(--blue); background:linear-gradient(135deg,#edf4ff,#f9fbff); border-bottom:1px solid var(--line); }
+.team-info { padding:22px; }
+.team-role { display:inline-block; color:var(--pink); font-size:11px; letter-spacing:.08em; text-transform:uppercase; font-weight:800; margin-bottom:8px; }
+.team-info h3 { margin:0 0 10px; color:var(--ink); font:700 21px Manrope; }
+.team-info p { margin:0; color:var(--muted); font-size:14px; line-height:1.65; }
+
+.insurance-page .insurance-hero { background:linear-gradient(115deg,#0b274d,#145a8d); }
+.insurance-page .service-card { border-top-color:#159f83; }
+.insurance-page .service-card .icon { color:#0d7f69; background:#e9faf6; }
+.insurance-page .eyebrow { color:#159f83; }
+.insurance-page .cta { background:linear-gradient(135deg,#0b5f55,#159f83); }
+.insurance-grid { grid-template-columns:repeat(4,minmax(0,1fr)) !important; gap:18px; max-width:none; }
+.insurance-grid .service-card { display:block !important; min-height:100%; }
+.insurance-grid .icon { min-width:52px !important; min-height:52px !important; }
+
+.realestate-page .realestate-hero { background:linear-gradient(90deg,rgba(47,27,10,.92),rgba(116,69,24,.68)),url("https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1800&q=85") center/cover; }
+.realestate-page .service-card { border-top-color:#c7772f; }
+.realestate-page .service-card .icon { color:#9a5b21; background:#fff1e5; }
+.realestate-page .eyebrow { color:#c7772f; }
+.realestate-page .cta { background:linear-gradient(135deg,#6d3b12,#c7772f); }
+
+.it-page .it-services-hero { background:linear-gradient(115deg,#16113f,#4430a6); }
+.it-page .service-card { border-top-color:#6d5dfc; }
+.it-page .service-card .icon { color:#5948d7; background:#efedff; }
+.it-page .eyebrow { color:#6d5dfc; }
+.it-page .cta { background:linear-gradient(135deg,#2f247d,#6d5dfc); }
+
+@media(max-width:1050px){ .nav-socials{display:none;} .nav-menu{gap:12px;} .enquiry-btn{padding:10px 13px;} .insurance-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;} }
+@media(max-width:850px){ .nav-inner{height:70px;} .nav-menu{top:70px;} .header-socials{display:none;} .team-grid{grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media(max-width:560px){ .topbar{display:none;} .nav-inner{height:68px;} .nav-menu{top:68px;} .team-grid,.insurance-grid{grid-template-columns:1fr !important;} .founder-photo img{height:auto; max-height:430px; object-fit:contain;} }
+
+
+/* ===== Final brand consistency update: Sawai Associates =====
+   Structure is unchanged. These rules only clean spacing, colors,
+   images and visual consistency. */
+:root{
+  --blue:#0A3D91;
+  --blue2:#1F5FC4;
+  --pink:#E6007E;
+  --navy:#071D3D;
+  --gold:#E6007E;
+  --cream:#F5F8FC;
+}
+
+/* Keep one professional company color family: navy/blue + logo pink. */
+.hero-glow{display:none!important;}
+.hero h1 span,
+.hero-proof svg,
+.panel-kicker,
+.trust-inner strong{
+  color:#ff8ac7!important;
+}
+.btn.primary{
+  background:var(--pink)!important;
+  color:#fff!important;
+  box-shadow:0 10px 24px rgba(230,0,126,.18)!important;
+}
+.btn.primary:hover{
+  transform:translateY(-1px)!important;
+  background:#c9006d!important;
+}
+.trust-strip{
+  background:#f7f9fc!important;
+  border-bottom:1px solid var(--line)!important;
+}
+
+/* Remove the green theme from insurance and match the company identity. */
+.insurance-page .insurance-hero,
+.insurance-page .cta{
+  background:linear-gradient(115deg,#071D3D,#0A3D91)!important;
+}
+.insurance-page .service-card{
+  border-top-color:var(--pink)!important;
+}
+.insurance-page .service-card .icon{
+  color:var(--blue)!important;
+  background:#edf4ff!important;
+}
+.insurance-page .eyebrow{
+  color:var(--pink)!important;
+}
+
+/* Show every founder and team image completely without cropping. */
+.founder-photo{
+  width:100%;
+}
+.founder-photo img{
+  width:min(390px,100%)!important;
+  height:430px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#f7f9fc!important;
+  padding:8px!important;
+}
+.team-member-image{
+  width:100%!important;
+  height:280px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#f7f9fc!important;
+  padding:6px!important;
+}
+.team-info-card{
+  min-height:0!important;
+  border-radius:18px!important;
+  box-shadow:0 8px 24px rgba(15,44,85,.07)!important;
+}
+.team-info{
+  padding:20px 22px 24px!important;
+}
+.team-info p{
+  min-height:0!important;
+}
+
+/* Remove unnecessary empty visual space while keeping the same layout. */
+.section{
+  padding:78px 0!important;
+}
+.section-head{
+  margin-bottom:34px!important;
+}
+.team-grid{
+  gap:18px!important;
+}
+.founder{
+  gap:50px!important;
+}
+.vision-grid{
+  gap:24px!important;
+}
+
+/* Keep animations very light and professional. */
+*{
+  scroll-behavior:smooth;
+}
+.service-card,
+.team-card,
+.btn,
+.enquiry-btn{
+  transition:box-shadow .18s ease, border-color .18s ease, background-color .18s ease, transform .18s ease!important;
+}
+.service-card:hover,
+.team-card:hover{
+  transform:translateY(-3px)!important;
+}
+.team-card:hover .team-overlay{
+  transform:none!important;
+}
+
+/* Responsive image sizing without changing page structure. */
+@media(max-width:850px){
+  .section{padding:62px 0!important;}
+  .team-member-image{height:300px!important;}
+  .founder-photo img{height:380px!important;}
+}
+@media(max-width:560px){
+  .section{padding:52px 0!important;}
+  .team-member-image{height:320px!important;}
+  .founder-photo img{height:340px!important;}
+}
+
+
+/* Final company polish: layout structure remains unchanged */
+.brand img{
+  width:58px !important;
+  height:58px !important;
+  object-fit:contain !important;
+  display:block;
+  flex:0 0 auto;
+}
+.brand{gap:11px !important;}
+.brand b{letter-spacing:.01em;}
+
+.footer-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:8px;
+}
+.footer-brand img{
+  width:58px;
+  height:58px;
+  object-fit:contain;
+  background:#fff;
+  border-radius:12px;
+  padding:5px;
+}
+.footer-brand h3{margin:0;}
+
+.founder-photo img{
+  border-radius:22px;
+  animation:founderFloat 5s ease-in-out infinite;
+  box-shadow:0 14px 32px rgba(7,29,61,.10);
+}
+@keyframes founderFloat{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-5px);}
+}
+
+/* Every team image uses one consistent, clear presentation size. */
+.team-grid{
+  align-items:stretch;
+}
+.team-info-card{
+  height:auto !important;
+  min-height:520px;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.team-member-image{
+  width:100% !important;
+  height:285px !important;
+  min-height:285px !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  display:block;
+  background:#f7f9fc;
+  padding:8px !important;
+  border-bottom:1px solid var(--line);
+}
+.team-info{
+  flex:1;
+}
+.team-info h3{
+  margin:6px 0 10px;
+}
+.team-info p{
+  margin-bottom:0;
+}
+
+/* Cleaner professional spacing without changing sections or content. */
+.nav-menu{
+  gap:20px;
+}
+.nav-link-group a,
+.nav-menu>a{
+  white-space:nowrap;
+}
+.section-head p{
+  margin-bottom:0;
+}
+.contact-grid,
+.founder{
+  row-gap:42px;
+}
+
+@media(max-width:1150px){
+  .nav-menu{gap:12px;}
+  .nav-menu a,.nav-link-group a{font-size:13px;}
+  .team-info-card{min-height:500px;}
+}
+@media(max-width:850px){
+  .nav-menu a,.nav-link-group a{font-size:15px;}
+  .team-info-card{min-height:0;}
+  .team-member-image{height:300px !important;min-height:300px !important;}
+}
+@media(max-width:560px){
+  .team-member-image{height:320px !important;min-height:320px !important;}
+  .footer-brand img{width:52px;height:52px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .founder-photo img{animation:none !important;}
+}
+
+
+/* ===== Client visual polish update: existing structure retained ===== */
+
+/* Real service imagery on Home without adding new sections */
+.service-visual-card{
+  overflow:hidden;
+  position:relative;
+  padding-top:0;
+}
+.service-visual-card .service-image{
+  height:160px;
+  margin:0 -30px 22px;
+  background-size:cover;
+  background-position:center;
+}
+.service-visual-card.property .service-image{
+  background-image:linear-gradient(180deg,rgba(7,29,61,.06),rgba(7,29,61,.35)),url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85");
+}
+.service-visual-card.protection .service-image{
+  background-image:linear-gradient(180deg,rgba(7,29,61,.06),rgba(7,29,61,.30)),url("https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=85");
+}
+.service-visual-card.technology .service-image{
+  background-image:linear-gradient(180deg,rgba(7,29,61,.05),rgba(7,29,61,.28)),url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85");
+}
+.service-visual-card .service-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.service-visual-card .service-top>span{
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.12em;
+  color:var(--pink);
+}
+
+/* Real Estate hero and category cards */
+.page-hero.real{
+  min-height:430px;
+  display:flex;
+  align-items:center;
+  background:
+    linear-gradient(90deg,rgba(5,25,60,.91),rgba(5,25,60,.56)),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=88") center/cover;
+}
+.real-estate-grid .real-estate-card{
+  overflow:hidden;
+  padding-top:0;
+}
+.real-card-image{
+  height:180px;
+  margin:0 -30px 22px;
+  background-size:cover;
+  background-position:center;
+}
+.real-estate-card:nth-child(1) .real-card-image{
+  background-image:url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1100&q=85");
+}
+.real-estate-card:nth-child(2) .real-card-image{
+  background-image:url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1100&q=85");
+}
+.real-estate-card:nth-child(3) .real-card-image{
+  background-image:url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1100&q=85");
+}
+.real-estate-card:nth-child(4) .real-card-image{
+  background-image:url("https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1100&q=85");
+}
+
+/* Insurance imagery and a stronger professional hero */
+.insurance-hero{
+  min-height:430px;
+  display:flex;
+  align-items:center;
+  background:
+    linear-gradient(90deg,rgba(7,29,61,.92),rgba(7,29,61,.57)),
+    url("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=2200&q=88") center/cover !important;
+}
+.insurance-grid .insurance-card{
+  overflow:hidden;
+  padding-top:0;
+}
+.insurance-card-image{
+  height:165px;
+  margin:0 -30px 22px;
+  background-size:cover;
+  background-position:center;
+}
+.insurance-card:nth-child(1) .insurance-card-image{
+  background-image:url("https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1100&q=85");
+}
+.insurance-card:nth-child(2) .insurance-card-image{
+  background-image:url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1100&q=85");
+}
+.insurance-card:nth-child(3) .insurance-card-image{
+  background-image:url("https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1100&q=85");
+}
+.insurance-card:nth-child(4) .insurance-card-image{
+  background-image:url("https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1100&q=85");
+}
+
+/* IT service page uses a real technology visual, keeping the existing hero layout */
+.page-hero.it,
+.it-services-hero{
+  min-height:430px;
+  display:flex;
+  align-items:center;
+  background:
+    linear-gradient(90deg,rgba(7,29,61,.93),rgba(7,29,61,.54)),
+    url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2200&q=88") center/cover !important;
+}
+
+/* Founder: subtle premium movement only */
+.founder-photo img{
+  animation:founderFloat 5s ease-in-out infinite;
+}
+@keyframes founderFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+
+/* Footer: cleaner alignment, better spacing, professional contact presentation */
+.footer{
+  padding-top:0;
+}
+.footer-grid{
+  padding-top:54px;
+  align-items:start;
+}
+.footer-grid>div{
+  min-width:0;
+}
+.footer h4{
+  color:#ff5aa9;
+  font:700 16px Manrope;
+  margin-bottom:16px;
+}
+.footer .footer-brand{
+  align-items:center;
+}
+.footer .footer-brand h3{
+  color:#ff5aa9;
+  white-space:nowrap;
+}
+.footer p{
+  margin:0 0 11px;
+}
+.footer-grid>div:nth-child(4) p{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
+.footer-grid>div:nth-child(4) p svg{
+  flex:0 0 auto;
+  margin-top:4px;
+  margin-right:0;
+}
+.footer-grid>div:nth-child(4) p a{
+  margin:0;
+  overflow-wrap:anywhere;
+}
+.social{
+  margin-top:18px;
+}
+.social a{
+  margin:0;
+}
+
+/* Keep interaction polished but not excessive */
+.service-card,
+.approach-item,
+.why-card,
+.real-estate-card,
+.insurance-card{
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+}
+.service-card:hover,
+.real-estate-card:hover,
+.insurance-card:hover{
+  transform:translateY(-4px);
+}
+
+/* Avoid empty visual gaps on smaller screens */
+@media(max-width:850px){
+  .page-hero.real,
+  .insurance-hero,
+  .page-hero.it,
+  .it-services-hero{min-height:360px;}
+  .service-visual-card .service-image,
+  .real-card-image,
+  .insurance-card-image{height:190px;}
+  .footer-grid{padding-top:42px;}
+}
+@media(max-width:560px){
+  .service-visual-card .service-image,
+  .real-card-image,
+  .insurance-card-image{height:210px;}
+  .page-hero.real,
+  .insurance-hero,
+  .page-hero.it,
+  .it-services-hero{min-height:330px;}
+  .footer-grid>div:nth-child(4) p{font-size:14px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .founder-photo img{animation:none;}
+  .service-card,
+  .approach-item,
+  .why-card,
+  .real-estate-card,
+  .insurance-card{transition:none;}
+}
+
+.form-success {
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: #eaf8ef;
+    border: 1px solid #a7d9b4;
+    color: #176b32;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    animation: fadeIn .25s ease;
+}
+.form-success strong { font-size: 15px; }
+.form-success span { font-size: 14px; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@media(max-width:850px) {
+    .team-grid .team-card { flex-basis: calc(50% - 10px); }
+}
+@media(max-width:600px) {
+    .team-grid .team-card { flex-basis: 100%; }
+}
+
+
+/* ===== HR update: IT services, one enquiry form and final visual polish ===== */
+
+/* Use the supplied IT Services image locally in the project. */
+.it-page .it-services-hero{
+  min-height:430px !important;
+  background:
+    linear-gradient(90deg,rgba(4,19,46,.88),rgba(4,19,46,.42)),
+    url("./assets/it/it-services-visual.png") center/cover no-repeat !important;
+}
+.service-visual-card.technology .service-image{
+  background-image:
+    linear-gradient(180deg,rgba(7,29,61,.04),rgba(7,29,61,.24)),
+    url("./assets/it/it-services-visual.png") !important;
+}
+
+/* Five IT cards: professional, balanced and responsive. */
+.it-service-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  align-items:stretch;
+}
+.it-service-card{
+  min-height:100%;
+}
+.it-service-card:nth-child(4),
+.it-service-card:nth-child(5){
+  grid-column:auto;
+}
+
+/* Center the final two cards in the last row on wide screens. */
+@media(min-width:901px){
+  .it-service-card:nth-child(4){grid-column:1 / span 1;}
+  .it-service-card:nth-child(5){grid-column:2 / span 1;}
+}
+
+/* Marketing & Sales card is visually consistent even without a supplied photo. */
+.team-grid .team-card{
+  flex:0 1 calc(33.333% - 14px);
+}
+.team-initials{
+  height:285px !important;
+  min-height:285px !important;
+  font-size:32px !important;
+  letter-spacing:.06em;
+  padding:20px;
+  text-align:center;
+}
+
+/* Footer arrangement: equal visual rhythm and clean contact column. */
+.footer-grid{
+  grid-template-columns:1.35fr .9fr 1.15fr 1.05fr !important;
+  gap:34px !important;
+}
+.footer-grid>div:nth-child(4) p{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
+.footer-grid>div:nth-child(4) p span,
+.footer-grid>div:nth-child(4) p a{
+  line-height:1.55;
+}
+.footer-grid>div:nth-child(4) p a{
+  white-space:normal !important;
+}
+
+/* Keep all enquiry paths consistent: one main Contact form. */
+.contact-form select,
+.contact-form input,
+.contact-form textarea{
+  background:#fff;
+}
+
+@media(max-width:1050px){
+  .it-service-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+  .footer-grid{grid-template-columns:1fr 1fr !important;}
+}
+@media(max-width:600px){
+  .it-service-grid{grid-template-columns:1fr !important;}
+  .team-grid .team-card{flex-basis:100% !important;}
+  .team-initials{height:300px !important;min-height:300px !important;}
+}
+
+
