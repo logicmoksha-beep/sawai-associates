@@ -35,7 +35,7 @@ export default function Contact() {
 
   return (
     <>
-      <section className="page-hero">
+      <section className="page-hero contact-hero">
         <div className="container">
           <span className="eyebrow">Contact</span>
           <h1>Let's talk about your requirement.</h1>

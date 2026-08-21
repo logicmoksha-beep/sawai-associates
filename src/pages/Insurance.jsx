@@ -2,32 +2,36 @@ import { Link } from "react-router-dom";
 import { Building, BriefcaseBusiness, HeartPulse, ShieldCheck, ArrowRight, Banknote } from "lucide-react";
 
 export default function Insurance() {
-  const services = [
-    {
-      icon: <Building size={35} />,
-      title: "Property Insurance",
-      description: "Protection for eligible buildings, property contents and assets against covered risks, with optional add-ons depending on the selected policy.",
-      link: "/contact",
-    },
-    {
-      icon: <BriefcaseBusiness size={35} />,
-      title: "Business Insurance",
-      description: "Insurance support for businesses, shops, offices and commercial establishments, including eligible assets and business-related risks.",
-      link: "/contact",
-    },
-    {
-      icon: <HeartPulse size={35} />,
-      title: "Health Insurance",
-      description: "Coverage options for individuals and families, including eligible hospitalisation, related expenses, network treatment and available add-ons.",
-      link: "/contact",
-    },
-    {
-      icon: <ShieldCheck size={35} />,
-      title: "Life Insurance",
-      description: "Financial protection for the policyholder's family, with life cover and other benefits depending on the selected policy and eligibility.",
-      link: "/contact",
-    },
-  ];
+const services = [
+  {
+    id: "property-insurance",
+    icon: <Building size={35} />,
+    title: "Property Insurance",
+    description: "Protection for eligible buildings, property contents and assets against covered risks, with optional add-ons depending on the selected policy.",
+    link: "/contact",
+  },
+  {
+    id: "business-insurance",
+    icon: <BriefcaseBusiness size={35} />,
+    title: "Business Insurance",
+    description: "Insurance support for businesses, shops, offices and commercial establishments, including eligible assets and business-related risks.",
+    link: "/contact",
+  },
+  {
+    id: "health-insurance",
+    icon: <HeartPulse size={35} />,
+    title: "Health Insurance",
+    description: "Coverage options for individuals and families, including eligible hospitalisation, related expenses, network treatment and available add-ons.",
+    link: "/contact",
+  },
+  {
+    id: "life-insurance",
+    icon: <ShieldCheck size={35} />,
+    title: "Life Insurance",
+    description: "Financial protection for the policyholder's family, with life cover and other benefits depending on the selected policy and eligibility.",
+    link: "/contact",
+  },
+];
 
   return (
     <div className="insurance-page">
@@ -48,8 +52,11 @@ export default function Insurance() {
           </div>
           <div className="service-grid insurance-grid">
             {services.map((service) => (
-              <div className="service-card insurance-card" key={service.title}>
-                <div className="insurance-card-image" aria-hidden="true"></div>
+                <div
+                  id={service.id}
+                  className="service-card insurance-card"
+                  key={service.title}
+                >                <div className="insurance-card-image" aria-hidden="true"></div>
                 <div className="icon">{service.icon}</div>
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>

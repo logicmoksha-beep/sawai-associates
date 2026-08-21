@@ -52,8 +52,16 @@ export default function Footer() {
           <h4>Contact Information</h4>
           <p><Phone size={15} /><a href={`tel:+91${CONTACT.phone}`}>{CONTACT.phoneDisplay}</a></p>
           <p><Mail size={15} /><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>
-          <p><MapPin size={15} /><span>{CONTACT.address}</span></p>
-          <div className="social">
+          <p>
+            <MapPin size={15} />
+            <a
+              href="https://maps.google.com/?q=Vikas+Chowk+Karve+Nagar+Pune+411052"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {CONTACT.address}
+            </a>
+          </p>          <div className="social">
             <a href={CONTACT.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin /></a>
             <a href={CONTACT.instagram} target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram /></a>
           </div>

@@ -78,18 +78,18 @@ const realEstateMenu = [
 ];
 
 const insuranceMenu = [
-  { name: "Life Insurance", path: "/insurance" },
-  { name: "Health Insurance", path: "/insurance" },
-  { name: "Business Insurance", path: "/insurance" },
-  { name: "Property Insurance", path: "/insurance" },
+  { name: "Property Insurance", path: "/insurance#property-insurance" },
+  { name: "Business Insurance", path: "/insurance#business-insurance" },
+  { name: "Health Insurance", path: "/insurance#health-insurance" },
+  { name: "Life Insurance", path: "/insurance#life-insurance" },
 ];
 
 const itMenu = [
-  { name: "Custom Software Solutions", path: "/contact" },
-  { name: "AI & Intelligent Technologies", path: "/contact" },
-  { name: "Agentic AI & Automation", path: "/contact" },
-  { name: "Cloud & DevOps Solutions", path: "/contact" },
-  { name: "Digital Systems Integration", path: "/contact" },
+  { name: "Custom Software Solutions", path: "/it-services#custom-software" },
+  { name: "AI & Intelligent Technologies", path: "/it-services#ai-technologies" },
+  { name: "Agentic AI & Automation", path: "/it-services#agentic-ai" },
+  { name: "Cloud & DevOps Solutions", path: "/it-services#cloud-devops" },
+  { name: "Digital Systems Integration", path: "/it-services#digital-integration" },
 ];
 
 export default function Navbar() {

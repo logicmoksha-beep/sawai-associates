@@ -4,7 +4,7 @@ import aishwaryaImage from "../assets/team/Aishwarya.png";
 import rushikeshImage from "../assets/team/Rushikesh.jpeg";
 import tejasImage from "../assets/team/Tejas.jpeg";
 import SupriyaImage from "../assets/team/SupriyaChaudhari.png"
-import MonikaImage from "../assets/team/MonikaGaudse.png"
+import MonikaImage from "../assets/team/MonikaGaudse.jpeg"
 import AshishImage from "../assets/team/AshishSable.png"
 
 export default function About() {

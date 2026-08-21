@@ -379,14 +379,7 @@
 }
 
 /* Insurance imagery and a stronger professional hero */
-.insurance-hero{
-  min-height:430px;
-  display:flex;
-  align-items:center;
-  background:
-    linear-gradient(90deg,rgba(7,29,61,.92),rgba(7,29,61,.57)),
-    url("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=2200&q=88") center/cover !important;
-}
+
 .insurance-grid .insurance-card{
   overflow:hidden;
   padding-top:0;
@@ -416,11 +409,12 @@
   min-height:430px;
   display:flex;
   align-items:center;
+
   background:
     linear-gradient(90deg,rgba(7,29,61,.93),rgba(7,29,61,.54)),
-    url("https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2200&q=88") center/cover !important;
+    url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2200&q=88")
+    center/cover no-repeat !important;
 }
-
 /* Founder: subtle premium movement only */
 .founder-photo img{
   animation:founderFloat 5s ease-in-out infinite;
@@ -502,6 +496,16 @@
   .insurance-card-image{height:190px;}
   .footer-grid{padding-top:42px;}
 }
+.page-hero.insurance-hero{
+  min-height:430px !important;
+  display:flex;
+  align-items:center;
+
+  background:
+    linear-gradient(90deg,rgba(5,25,60,.91),rgba(5,25,60,.56)),
+    url("https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=2200&q=88")
+    center/cover no-repeat !important;
+}
 @media(max-width:560px){
   .service-visual-card .service-image,
   .real-card-image,
@@ -550,12 +554,10 @@
    The homepage TECHNOLOGY card imports it in Home.jsx and applies it as
    an inline background, so no CSS url() reference is needed here. */
 .it-page .it-services-hero{
-  min-height:430px !important;
-  background:
-    linear-gradient(90deg,rgba(4,19,46,.88),rgba(4,19,46,.42)),
-    url("./assets/it/it-services-visual.png") center/cover no-repeat !important;
+  background-image:
+    linear-gradient(90deg,rgba(7,29,61,.93),rgba(7,29,61,.54)),
+    url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2200&q=88") !important;
 }
-
 /* Five IT cards: professional, balanced and responsive. */
 .it-service-grid{
   grid-template-columns:repeat(3,minmax(0,1fr)) !important;
@@ -624,3 +626,27 @@
 }
 
 
+.about-hero{
+  min-height:430px;
+  display:flex;
+  align-items:center;
+
+  background:
+    linear-gradient(90deg,rgba(5,25,60,.88),rgba(5,25,60,.50)),
+    url("https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=2200&q=88")
+    center/cover no-repeat !important;
+}
+.contact-hero{
+  min-height:430px;
+  display:flex;
+  align-items:center;
+
+  background:
+    linear-gradient(90deg,rgba(5,25,60,.91),rgba(5,25,60,.56)),
+    url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=88")
+    center/cover no-repeat !important;
+}
+
+html{
+  scroll-behavior: smooth;
+}

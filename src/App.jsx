@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -22,13 +23,26 @@ import MobileAppDevelopment from "./pages/MobileAppDevelopment";
 import SoftwareSolutions from "./pages/SoftwareSolutions";
 import ITConsultancy from "./pages/ITConsultancy";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <>
+      <ScrollToTop />
+
       <Navbar />
 
       <main>
         <Routes>
+
           {/* Main Pages */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -74,6 +88,7 @@ export default function App() {
             path="/it-services/it-consultancy"
             element={<ITConsultancy />}
           />
+
         </Routes>
       </main>
 

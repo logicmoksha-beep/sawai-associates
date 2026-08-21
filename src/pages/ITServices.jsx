@@ -8,28 +8,34 @@ import {
 } from "lucide-react";
 
 export default function ITServices() {
+
   const services = [
     {
+      id: "custom-software",
       icon: <Code2 size={35} />,
       title: "Custom Software Solutions",
       description: "Web, mobile, and enterprise applications built to your exact specifications.",
     },
     {
+      id: "ai-technologies",
       icon: <BrainCircuit size={35} />,
       title: "AI & Intelligent Technologies",
       description: "Intelligent models, LLM integration, and data engineering that scale.",
     },
     {
+      id: "agentic-ai",
       icon: <Bot size={35} />,
       title: "Agentic AI & Automation",
       description: "Inhouse solutions, customize solutions, Hosting, Maintenance.",
     },
     {
+      id: "cloud-devops",
       icon: <CloudCog size={35} />,
       title: "Cloud & DevOps Solutions",
       description: "Seamless migration, CI/CD pipelines, and infrastructure-as-code automation.",
     },
     {
+      id: "digital-integration",
       icon: <Network size={35} />,
       title: "Digital Systems Integration",
       description: "Connect your tools and legacy systems into one reliable, unified stack.",
@@ -62,8 +68,11 @@ export default function ITServices() {
 
           <div className="service-grid it-service-grid">
             {services.map((service) => (
-              <div className="service-card it-service-card" key={service.title}>
-                <div className="icon">{service.icon}</div>
+<div
+  id={service.id}
+  className="service-card it-service-card"
+  key={service.title}
+>                <div className="icon">{service.icon}</div>
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
                 <Link to="/contact">Discuss Your Requirement →</Link>
