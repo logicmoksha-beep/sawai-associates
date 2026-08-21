@@ -546,17 +546,14 @@
 
 /* ===== HR update: IT services, one enquiry form and final visual polish ===== */
 
-/* Use the supplied IT Services image locally in the project. */
+/* Use the supplied IT Services visual locally in the project.
+   The homepage TECHNOLOGY card imports it in Home.jsx and applies it as
+   an inline background, so no CSS url() reference is needed here. */
 .it-page .it-services-hero{
   min-height:430px !important;
   background:
     linear-gradient(90deg,rgba(4,19,46,.88),rgba(4,19,46,.42)),
     url("./assets/it/it-services-visual.png") center/cover no-repeat !important;
-}
-.service-visual-card.technology .service-image{
-  background-image:
-    linear-gradient(180deg,rgba(7,29,61,.04),rgba(7,29,61,.24)),
-    url("./assets/it/it-services-visual.png") !important;
 }
 
 /* Five IT cards: professional, balanced and responsive. */

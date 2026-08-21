@@ -3,11 +3,12 @@ import {
   ArrowRight, ShieldCheck, Building2, Code2, CheckCircle2,
   Sparkles, BadgeCheck, Headphones, MapPin, HeartHandshake
 } from "lucide-react";
+import itServicesVisual from "../assets/it/it-services-visual.png";
 
 const services = [
   { icon: <Building2 />, title: "Real Estate", text: "Buy, sell, rent and discover commercial opportunities with clear guidance.", link: "/real-estate", tag: "PROPERTY" },
   { icon: <ShieldCheck />, title: "Insurance", text: "Protect your family, health, vehicle and business with the right coverage.", link: "/insurance", tag: "PROTECTION" },
-  { icon: <Code2 />, title: "IT Services", text: "Build modern websites, apps and software solutions that support growth.", link: "/it-services", tag: "TECHNOLOGY" },
+  { icon: <Code2 />, title: "IT Services", text: "Build modern websites, apps and software solutions that support growth.", link: "/it-services", tag: "TECHNOLOGY", image: itServicesVisual },
 ];
 
 export default function Home() {
@@ -113,10 +114,20 @@ export default function Home() {
   );
 }
 
-function Service({ icon, title, text, link, tag }) {
+function Service({ icon, title, text, link, tag, image }) {
   return (
     <article className={`service-card service-visual-card ${tag.toLowerCase()}`}>
-      <div className="service-image" aria-hidden="true"></div><div className="service-top"><span>{tag}</span><div className="icon">{icon}</div></div>
+      <div
+        className="service-image"
+        aria-hidden="true"
+        style={
+          image
+            ? {
+                backgroundImage: `linear-gradient(180deg, rgba(7,29,61,.05), rgba(7,29,61,.28)), url(${image})`,
+              }
+            : undefined
+        }
+      ></div><div className="service-top"><span>{tag}</span><div className="icon">{icon}</div></div>
       <h3>{title}</h3><p>{text}</p>
       <Link to={link}>Explore {title} <ArrowRight size={16} /></Link>
     </article>
