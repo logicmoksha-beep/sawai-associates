@@ -93,17 +93,20 @@ const itMenu = [
 ];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [drop, setDrop] = useState(null);
   const [subMenu, setSubMenu] = useState(null);
 
   const navRef = useRef(null);
+  const drawerRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         navRef.current &&
-        !navRef.current.contains(event.target)
+        drawerRef.current &&
+        !navRef.current.contains(event.target) &&
+        !drawerRef.current.contains(event.target)
       ) {
         setDrop(null);
         setSubMenu(null);
@@ -125,16 +128,22 @@ export default function Navbar() {
   const toggle = (name) =>
     setDrop(drop === name ? null : name);
 
+  const openMenu = () => {
+    setIsMobileMenuOpen(true);
+    setDrop(null);
+    setSubMenu(null);
+  };
+
   const closeMenus = () => {
-    setOpen(false);
+    setIsMobileMenuOpen(false);
     setDrop(null);
     setSubMenu(null);
   };
 
   useEffect(() => {
-    document.body.classList.toggle("menu-open", open);
+    document.body.classList.toggle("menu-open", isMobileMenuOpen);
     return () => document.body.classList.remove("menu-open");
-  }, [open]);
+  }, [isMobileMenuOpen]);
 
   const Dropdown = ({
     name,
@@ -151,6 +160,7 @@ export default function Navbar() {
 
         <button
           className="dropdown-toggle"
+          aria-expanded={drop === name}
           onClick={() => toggle(name)}
         >
           <ChevronDown size={15} />
@@ -251,7 +261,14 @@ export default function Navbar() {
         </div>
       </div>
 
-      {open && <button className="mobile-nav-backdrop" aria-label="Close navigation" onClick={closeMenus} />}
+      {isMobileMenuOpen && (
+        <button
+          type="button"
+          className="mobile-nav-backdrop"
+          aria-label="Close navigation menu"
+          onClick={closeMenus}
+        />
+      )}
 
       <header className="navbar" ref={navRef}>
         <div className="nav-inner">
@@ -271,18 +288,8 @@ export default function Navbar() {
             </span>
           </Link>
 
-          <nav
-            id="site-nav"
-            className={
-              open
-                ? "nav-menu show"
-                : "nav-menu"
-            }
-          >
-            <Link
-              to="/"
-              onClick={closeMenus}
-            >
+          <nav id="site-nav" className="nav-menu">
+            <Link to="/" onClick={closeMenus}>
               Home
             </Link>
 
@@ -308,44 +315,13 @@ export default function Navbar() {
               items={itMenu}
             />
 
-            <Link
-              to="/about"
-              onClick={closeMenus}
-            >
+            <Link to="/about" onClick={closeMenus}>
               About Us
             </Link>
 
-            <Link
-              to="/contact"
-              onClick={closeMenus}
-            >
+            <Link to="/contact" onClick={closeMenus}>
               Contact
             </Link>
-
-            {/* Mobile quick actions — let users act immediately */}
-            <div className="nav-quick-actions">
-              <a
-                className="nav-quick-btn nav-quick-call"
-                href={`tel:+91${CONTACT.phone}`}
-              >
-                <Phone size={18} /> Call Us
-              </a>
-              <a
-                className="nav-quick-btn nav-quick-whatsapp"
-                href={`https://wa.me/${CONTACT.whatsapp}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                WhatsApp
-              </a>
-              <Link
-                className="nav-quick-btn nav-quick-enquiry"
-                to="/contact"
-                onClick={closeMenus}
-              >
-                Get Enquiry
-              </Link>
-            </div>
           </nav>
 
           <Link
@@ -367,15 +343,111 @@ export default function Navbar() {
           <button
             type="button"
             className="mobile-menu"
-            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={open}
-            aria-controls="site-nav"
-            onClick={() => setOpen(!open)}
+            aria-label="Open navigation menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
+            onClick={openMenu}
           >
-            {open ? <X size={28} /> : <Menu size={28} />}
+            <Menu size={28} />
           </button>
         </div>
       </header>
+
+      {/* ===== Mobile right-side slide-in drawer ===== */}
+      <aside
+        id="mobile-navigation"
+        ref={drawerRef}
+        aria-hidden={!isMobileMenuOpen}
+        className={
+          isMobileMenuOpen
+            ? "mobile-drawer open"
+            : "mobile-drawer"
+        }
+      >
+        <div className="mobile-drawer-header">
+          <Link
+            to="/"
+            className="mobile-drawer-brand"
+            onClick={closeMenus}
+          >
+            <img src={logo} alt="logo" />
+
+            <b>Sawai Associates</b>
+          </Link>
+
+          <button
+            type="button"
+            className="mobile-drawer-close"
+            aria-label="Close navigation menu"
+            onClick={closeMenus}
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        {/* Drawer navigation scrolls internally when it is taller than
+            the viewport; the header above stays pinned. */}
+        <nav className="mobile-drawer-nav">
+          <Link to="/" onClick={closeMenus}>
+            Home
+          </Link>
+
+          <Dropdown
+            name="realEstate"
+            label="Real Estate"
+            path="/real-estate"
+            items={realEstateMenu}
+            isRealEstate={true}
+          />
+
+          <Dropdown
+            name="insurance"
+            label="Insurance Services"
+            path="/insurance"
+            items={insuranceMenu}
+          />
+
+          <Dropdown
+            name="it"
+            label="IT Services"
+            path="/it-services"
+            items={itMenu}
+          />
+
+          <Link to="/about" onClick={closeMenus}>
+            About Us
+          </Link>
+
+          <Link to="/contact" onClick={closeMenus}>
+            Contact
+          </Link>
+
+          {/* Mobile quick actions — let users act immediately */}
+          <div className="nav-quick-actions">
+            <a
+              className="nav-quick-btn nav-quick-call"
+              href={`tel:+91${CONTACT.phone}`}
+            >
+              <Phone size={18} /> Call Us
+            </a>
+            <a
+              className="nav-quick-btn nav-quick-whatsapp"
+              href={`https://wa.me/${CONTACT.whatsapp}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              WhatsApp
+            </a>
+            <Link
+              className="nav-quick-btn nav-quick-enquiry"
+              to="/contact"
+              onClick={closeMenus}
+            >
+              Get Enquiry
+            </Link>
+          </div>
+        </nav>
+      </aside>
     </>
   );
 }

@@ -10,10 +10,6 @@ main{min-width:0}
   .nav-inner{width:100%;padding-left:14px;padding-right:14px}
   .navbar{position:sticky;top:0}
   .topbar{font-size:11px}
-  .topbar-inner{min-height:34px;height:auto;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
-  .brand b{font-size:16px}.brand small{font-size:10px}.brand img{width:42px;height:42px}
-  .nav-menu{max-height:calc(100vh - 72px);overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
-  .dropdown{max-width:100%;left:0;right:auto;transform:none}
   .dropdown.active{transform:none}
   .submenu{max-width:100%;overflow-wrap:anywhere}
   .hero{min-height:560px;background-position:center}
@@ -76,14 +72,19 @@ main{min-width:0}
 @media(max-width:850px){
   body.menu-open{overflow:hidden}
   .navbar{position:sticky;top:0;z-index:5000}
-  .mobile-nav-backdrop{display:block;position:fixed;inset:0;top:68px;border:0;background:rgba(5,16,31,.34);z-index:4900;cursor:pointer}
-  .nav-menu{position:fixed!important;top:68px!important;left:0!important;right:0!important;bottom:0!important;width:100%!important;max-height:calc(100dvh - 68px)!important;overflow-y:auto!important;overscroll-behavior:contain;padding:14px 22px 30px!important;z-index:5001!important;background:#fff!important;box-shadow:0 18px 35px rgba(0,0,0,.16)!important}
-  .nav-menu.show{display:flex!important}
-  .nav-menu>a,.nav-link-group>a{font-size:15px!important;padding:15px 0!important}
-  .nav-link-group{min-height:52px}
-  .dropdown{width:100%!important;padding:0 0 8px 12px!important}
-  .dropdown a{overflow-wrap:anywhere}
-  .mobile-menu{position:relative;z-index:5002}
+  /* Full-screen overlay behind the right-side drawer.
+     z must stay BELOW the sticky header (z:5000) because the drawer
+     lives inside that header's stacking context, so the drawer can be
+     above the overlay while the overlay still dims the page content. */
+  .mobile-nav-backdrop{
+    display:block;
+    position:fixed;
+    inset:0;
+    border:0;
+    background:rgba(5,16,31,.42);
+    z-index:4000;
+    cursor:pointer;
+  }
   .loan-partner-card{grid-template-columns:auto 1fr;gap:16px;padding:22px}
   .loan-partner-btn{grid-column:1/-1;width:100%;min-height:48px}
 }
@@ -144,13 +145,19 @@ main{min-width:0}
   /* Remove the thin top strip so the brand bar is the prominent header */
   .topbar{ display:none !important; }
 
-  /* Main header bar: sticky, white, full width, comfortable height */
+  /* Main header bar: sticky, white, full width, comfortable height.
+     Use a fully opaque background and disable the inherited backdrop
+     blur on mobile — the translucent backdrop-filter + sticky header is a
+     known cause of whole-header repaint flicker ("blinking") when the
+     mouse hovers the bar on narrow viewports. */
   .navbar{
     position:sticky;
     top:0;
     height:72px;
     z-index:5000;
     background:#fff;
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
     border-bottom:1px solid var(--line);
     box-shadow:0 6px 22px rgba(7,29,61,.08);
   }
@@ -193,8 +200,6 @@ main{min-width:0}
     background:#fff;
     color:var(--blue);
     cursor:pointer;
-    position:relative;
-    z-index:5002;
     box-shadow:0 2px 10px rgba(15,44,85,.12);
     touch-action:manipulation;
     transition:transform .15s ease, background .15s ease;
@@ -203,53 +208,136 @@ main{min-width:0}
   .mobile-menu:active{ transform:scale(.94); }
   .mobile-menu:hover{ background:#f3f7ff; }
 
-   /* Backdrop covers the whole screen behind the header + panel */
+   /* Full-screen overlay sits above the page/navbar (z:5000) and below
+      the drawer (z:5002). Clicking it closes the drawer. */
   .mobile-nav-backdrop{
     inset:0 !important;
     top:0 !important;
-    z-index:5000 !important;
+    z-index:5001 !important;
   }
 
-  /* FULL-PAGE NAV: the menu is a full-screen overlay. The header bar
-     (logo + X button) stays visible on top so the user can close it. */
-  .nav-menu{
+  /* Hide the desktop #site-nav menu on mobile (the drawer replaces it) */
+  .nav-menu{ display:none !important; }
+
+  /* RIGHT-SIDE SLIDE-IN DRAWER
+     A fixed element anchored to the right edge. It slides in from the
+     right (translateX 100% -> 0) using a transform transition and never
+     pushes or resizes the page content. It is width-capped so it never
+     covers the entire screen. */
+  .mobile-drawer{
     position:fixed !important;
-    inset:0 !important;
     top:0 !important;
-    left:0 !important;
     right:0 !important;
     bottom:0 !important;
-    width:100% !important;
-    height:100dvh !important;
-    max-height:100dvh !important;
-    margin:0 !important;
-    padding:88px 24px 40px !important; /* below the 72px header bar */
-    display:flex !important;
+    left:auto !important;
+    width:min(85vw,380px);
+    height:100vh;
+    max-height:100vh;
+    margin:0;
+    padding:0;
+    display:flex;
     flex-direction:column;
-    justify-content:flex-start !important;
-    align-items:stretch !important;
-    gap:2px;
-    background:#fff !important;
-    z-index:5001 !important;
-    overflow-y:auto !important;
+    align-items:stretch;
+    background:#fff;
+    z-index:5002;
+    overflow:hidden;
+    box-shadow:-12px 0 32px rgba(7,29,61,.18);
+    transform:translateX(100%);
+    /* Delay the visibility switch so the drawer stays on screen during
+       the closing slide (transform) before it disappears. */
+    transition:transform .3s ease-in-out, visibility 0s linear .3s;
+    visibility:hidden;
+  }
+  .mobile-drawer.open{
+    transform:translateX(0);
+    visibility:visible;
+    /* When opening, flip visibility immediately (no delay). */
+    transition:transform .3s ease-in-out, visibility 0s;
+  }
+
+  /* Drawer header: brand on the left, close (✕) pinned top-right */
+  .mobile-drawer-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex:0 0 auto;
+    padding:14px 16px;
+    border-bottom:1px solid var(--line);
+    background:#fff;
+    z-index:1;
+  }
+  .mobile-drawer-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:0;
+    text-decoration:none;
+  }
+  .mobile-drawer-brand img{
+    width:40px;
+    height:40px;
+    flex:0 0 auto;
+    object-fit:contain;
+  }
+  .mobile-drawer-brand b{
+    font:800 17px/1.1 Manrope;
+    color:var(--navy);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .mobile-drawer-close{
+    width:44px;
+    height:44px;
+    flex:0 0 auto;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:0;
+    border:1px solid #dfe6f2;
+    border-radius:12px;
+    background:#fff;
+    color:var(--navy);
+    cursor:pointer;
+    touch-action:manipulation;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .mobile-drawer-close svg{ width:24px; height:24px; }
+  .mobile-drawer-close:hover{ background:#f3f7ff; }
+  .mobile-drawer-close:active{ transform:scale(.96); }
+
+  /* Drawer navigation scrolls internally while the header stays pinned. */
+  .mobile-drawer-nav{
+    flex:1 1 auto;
+    min-height:0;
+    overflow-y:auto;
+    overflow-x:hidden;
     overscroll-behavior:contain;
-    box-shadow:none !important;
+    -webkit-overflow-scrolling:touch;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    padding:6px 20px 30px;
+  }
+
+  /* Layering: website (default) < navbar (5000) < overlay (5001) < drawer (5002) */
+  .navbar{ z-index:5000 !important; }
+
+  /* Roomier, clearly-tappable menu rows inside the drawer. */
+  .mobile-drawer-nav > a,
+  .mobile-drawer-nav .nav-link-group > a{
+    font-size:16.5px !important;
+    padding:15px 0 !important;
+    line-height:1.3;
+    color:#273142;
+    font-weight:600;
+    border-bottom:1px solid var(--line);
     text-align:left;
   }
-
-  /* Keep the header bar (with the X) visible above the overlay */
-  .navbar{ z-index:5002 !important; }
-  .mobile-menu{ z-index:5003 !important; }
-
-  /* Roomier, clearly-tappable menu rows that fill the page */
-  .nav-menu > a,
-  .nav-link-group > a{
-    font-size:17px !important;
-    padding:17px 0 !important;
-    line-height:1.3;
-    border-bottom:1px solid var(--line);
-  }
-  .nav-link-group{ min-height:58px; }
+  .mobile-drawer-nav > a:last-of-type{ border-bottom:1px solid var(--line); }
+  .nav-drop{ width:100%; }
+  .nav-link-group{ min-height:56px; }
   .nav-link-group .dropdown-toggle,
   .dropdown-toggle{
     width:46px;
@@ -265,7 +353,14 @@ main{min-width:0}
   .submenu a{ padding:12px 10px; font-size:15px; }
   .dropdown a{ padding:12px 8px; font-size:15px; }
   .dropdown{ border-bottom:1px solid var(--line); padding-bottom:10px !important; }
-  .nav-menu > a:last-of-type{ border-bottom:1px solid var(--line); }
+
+  /* Prevent base.css's `.nav-drop:hover .dropdown { display:none }`
+     rule from force-hiding the click-activated dropdowns inside the
+     drawer — that rule would repeatedly hide/show an open submenu the
+     moment the pointer is over its row, causing flicker/blinking.
+     (Same specificity, so this later rule wins in the cascade.) */
+  .mobile-drawer .dropdown.active{ display:block !important; }
+  .mobile-drawer .submenu{ display:block !important; }
 
   /* Mobile quick-call button next to the hamburger in the header bar */
   .mobile-call{
@@ -281,8 +376,6 @@ main{min-width:0}
     background:var(--blue);
     color:#fff;
     cursor:pointer;
-    position:relative;
-    z-index:5002;
     box-shadow:0 2px 10px rgba(15,44,85,.12);
     touch-action:manipulation;
     transition:transform .15s ease, background .15s ease;
@@ -317,6 +410,15 @@ main{min-width:0}
   .nav-quick-whatsapp{ background:#25D366; color:#fff; }
   .nav-quick-enquiry{ background:var(--pink); color:#fff; }
   .nav-quick-btn:active{ transform:scale(.98); }
+}
+
+/* =========================================================================
+   DESKTOP (>= 851px): keep the existing horizontal #site-nav navbar
+   untouched. The mobile right-side drawer and its overlay are hidden.
+   ========================================================================= */
+@media (min-width: 851px){
+  .mobile-drawer{ display:none !important; }
+  .mobile-nav-backdrop{ display:none; }
 }
 
 
