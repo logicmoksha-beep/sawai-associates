@@ -125,8 +125,17 @@ export default function Navbar() {
       );
   }, []);
 
-  const toggle = (name) =>
-    setDrop(drop === name ? null : name);
+  const toggle = (name) => {
+    if (drop === name) {
+      // Closing this dropdown also collapses any open nested submenu.
+      setDrop(null);
+      setSubMenu(null);
+    } else {
+      // Opening a different dropdown resets any previously open nested submenu.
+      setDrop(name);
+      setSubMenu(null);
+    }
+  };
 
   const openMenu = () => {
     setIsMobileMenuOpen(true);
@@ -202,10 +211,12 @@ export default function Navbar() {
          <button
   type="button"
   className="submenu-arrow"
+  aria-expanded={subMenu === item.name}
   onClick={(e) => {
     e.preventDefault();
     e.stopPropagation();
-    setSubMenu(item.name);
+    // Toggle this nested submenu open/closed.
+    setSubMenu(subMenu === item.name ? null : item.name);
   }}
 >
   {subMenu === item.name ? "⌄" : "›"}
