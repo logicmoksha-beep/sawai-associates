@@ -24,6 +24,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
           >
+            
             Visit BTech Loan Wala
           </a>
         </div>
